@@ -2,6 +2,7 @@ import "./App.css";
 import GeneralInfo from "./components/GeneralInfo";
 import EducationInfo from "./components/EducationInfo";
 import ExperienceInfo from "./components/ExperienceInfo";
+import CVPreview from "./components/CVPreview";
 
 function App() {
   return (
@@ -18,12 +19,7 @@ function App() {
           <ExperienceInfo />
         </section>
 
-        <aside className="tips-column">
-          <h2>CV Tips</h2>
-          <p>Keep your CV short, clear, and professional.</p>
-          <p>Use action words when describing responsibilities.</p>
-          <p>Double-check your email and phone number.</p>
-        </aside>
+        <CVPreview />
       </div>
     </main>
   );

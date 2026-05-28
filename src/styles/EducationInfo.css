@@ -8,6 +8,11 @@
 
 .education-section h2 {
   margin-bottom: 20px;
+  color: #111827;
+  font-size: 1.6rem;
+  font-weight: 700;
+  border-left: 5px solid #111827;
+  padding-left: 12px;
 }
 
 .education-section form,

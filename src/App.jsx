@@ -5,12 +5,16 @@ import ExperienceInfo from "./components/ExperienceInfo";
 
 function App() {
   return (
-    <div className="app-container">
-      <h1>CV Application</h1>
+    <main className="app-container">
+      <header className="app-header">
+        <h1>CV Application</h1>
+        <p>Fill in your details and generate a simple professional CV.</p>
+      </header>
+
       <GeneralInfo />
       <EducationInfo />
       <ExperienceInfo />
-    </div>
+    </main>
   );
 }
 

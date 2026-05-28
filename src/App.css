@@ -1,7 +1,12 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  background-color: #f3f4f6;
+  background: linear-gradient(135deg, #eef2ff, #f8fafc);
   font-family: Arial, Helvetica, sans-serif;
+  color: #111827;
 }
 
 .app-container {
@@ -10,7 +15,17 @@ body {
   padding: 20px;
 }
 
-.app-container h1 {
+.app-header {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 32px;
+}
+
+.app-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 8px;
+}
+
+.app-header p {
+  color: #6b7280;
+  font-size: 1rem;
 }

@@ -1,14 +1,8 @@
 import { useState } from "react";
 import "../styles/GeneralInfo.css";
 
-export default function GeneralInfo() {
+export default function GeneralInfo({ generalInfo, setGeneralInfo }) {
   const [isEditing, setIsEditing] = useState(true);
-
-  const [generalInfo, setGeneralInfo] = useState({
-    name: "",
-    email: "",
-    phone: "",
-  });
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -22,10 +16,6 @@ export default function GeneralInfo() {
   function handleSubmit(e) {
     e.preventDefault();
     setIsEditing(false);
-  }
-
-  function handleEdit() {
-    setIsEditing(true);
   }
 
   return (
@@ -65,16 +55,14 @@ export default function GeneralInfo() {
           <p>
             <strong>Name:</strong> {generalInfo.name}
           </p>
-
           <p>
             <strong>Email:</strong> {generalInfo.email}
           </p>
-
           <p>
             <strong>Phone:</strong> {generalInfo.phone}
           </p>
 
-          <button onClick={handleEdit}>Edit</button>
+          <button onClick={() => setIsEditing(true)}>Edit</button>
         </div>
       )}
     </div>

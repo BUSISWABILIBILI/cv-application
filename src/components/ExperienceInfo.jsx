@@ -128,10 +128,10 @@ export default function ExperienceInfo({
                   </label>
 
                   <label>
-                    Main responsibilities
+                    Key responsibilities
                     <textarea
                       name="responsibilities"
-                      placeholder="Describe the role, impact, and tools used"
+                      placeholder={"Write each responsibility on a new line"}
                       value={experience.responsibilities}
                       onChange={(e) => handleChange(experience.id, e)}
                     />

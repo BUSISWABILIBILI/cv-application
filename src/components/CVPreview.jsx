@@ -1,5 +1,14 @@
 import "../styles/CVPreview.css";
 
+function getResponsibilityItems(responsibilities) {
+  return responsibilities
+    .split(/\n/)
+    .map((responsibility) =>
+      responsibility.replace(/^[-*•]\s*/, "").trim(),
+    )
+    .filter(Boolean);
+}
+
 export default function CVPreview({
   generalInfo,
   summaryInfo,
@@ -76,25 +85,44 @@ export default function CVPreview({
 
         <section>
           <h3>Experience</h3>
-          {experienceInfo.map((experience, index) => (
-            <div className="cv-preview-entry" key={experience.id}>
-              <div className="cv-entry">
-                <div>
-                  <p>
-                    <strong>
-                      {experience.company || `Company Name ${index + 1}`}
-                    </strong>
+          {experienceInfo.map((experience, index) => {
+            const responsibilityItems = getResponsibilityItems(
+              experience.responsibilities,
+            );
+
+            return (
+              <div className="cv-preview-entry" key={experience.id}>
+                <div className="cv-entry">
+                  <div>
+                    <p>
+                      <strong>
+                        {experience.company || `Company Name ${index + 1}`}
+                      </strong>
+                    </p>
+                    <p>{experience.position || "Position Title"}</p>
+                  </div>
+                  <p className="cv-date">
+                    {experience.startDate || "Start Date"} -{" "}
+                    {experience.endDate || "End Date"}
                   </p>
-                  <p>{experience.position || "Position Title"}</p>
                 </div>
-                <p className="cv-date">
-                  {experience.startDate || "Start Date"} -{" "}
-                  {experience.endDate || "End Date"}
-                </p>
+                <ul className="cv-responsibilities">
+                  {(responsibilityItems.length > 0
+                    ? responsibilityItems
+                    : [
+                        "Main responsibility",
+                        "Measurable impact",
+                        "Tools or methods used",
+                      ]
+                  ).map((responsibility, responsibilityIndex) => (
+                    <li key={`${responsibility}-${responsibilityIndex}`}>
+                      {responsibility}
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <p>{experience.responsibilities || "Main responsibilities"}</p>
-            </div>
-          ))}
+            );
+          })}
         </section>
       </div>
     </aside>

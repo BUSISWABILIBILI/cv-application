@@ -115,6 +115,18 @@
   line-height: 1.3;
 }
 
+.cv-responsibilities {
+  display: grid;
+  gap: 6px;
+  margin: 8px 0 0;
+  padding-left: 18px;
+  color: #445066;
+}
+
+.cv-responsibilities li {
+  line-height: 1.5;
+}
+
 .cv-document strong {
   color: #111827;
 }

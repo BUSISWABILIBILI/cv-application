@@ -28,6 +28,10 @@ function getProjectHref(link) {
   return `https://${link}`;
 }
 
+function getDisplayLink(link) {
+  return link.replace(/^https?:\/\//i, "").replace(/\/$/, "");
+}
+
 export default function CVPreview({
   generalInfo,
   summaryInfo,
@@ -37,6 +41,46 @@ export default function CVPreview({
   experienceInfo,
 }) {
   const skillItems = getListItems(skillsInfo.skills);
+  const contactItems = [
+    {
+      label: generalInfo.email || "email@example.com",
+      href: generalInfo.email ? `mailto:${generalInfo.email}` : "",
+    },
+    {
+      label: generalInfo.phone || "Phone Number",
+      href: generalInfo.phone
+        ? `tel:${generalInfo.phone.replace(/[^\d+]/g, "")}`
+        : "",
+    },
+    {
+      label: generalInfo.location || "Location",
+      href: "",
+    },
+    ...(generalInfo.linkedin
+      ? [
+          {
+            label: getDisplayLink(generalInfo.linkedin),
+            href: getProjectHref(generalInfo.linkedin),
+          },
+        ]
+      : []),
+    ...(generalInfo.github
+      ? [
+          {
+            label: getDisplayLink(generalInfo.github),
+            href: getProjectHref(generalInfo.github),
+          },
+        ]
+      : []),
+    ...(generalInfo.website
+      ? [
+          {
+            label: getDisplayLink(generalInfo.website),
+            href: getProjectHref(generalInfo.website),
+          },
+        ]
+      : []),
+  ];
 
   function handlePrint() {
     window.print();
@@ -57,10 +101,19 @@ export default function CVPreview({
       <div className="cv-document">
         <header className="cv-document-header">
           <h2>{generalInfo.name || "Your Name"}</h2>
-          <p>
-            <span>{generalInfo.email || "email@example.com"}</span>
-            <span>{generalInfo.phone || "Phone Number"}</span>
-          </p>
+          <ul className="cv-contact-list">
+            {contactItems.map((item) => (
+              <li key={`${item.label}-${item.href}`}>
+                {item.href ? (
+                  <a href={item.href} target="_blank" rel="noreferrer">
+                    {item.label}
+                  </a>
+                ) : (
+                  <span>{item.label}</span>
+                )}
+              </li>
+            ))}
+          </ul>
         </header>
 
         <section>

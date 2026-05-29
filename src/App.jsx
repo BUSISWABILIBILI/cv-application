@@ -23,6 +23,10 @@ function createGeneralInfo() {
     name: "",
     email: "",
     phone: "",
+    location: "",
+    linkedin: "",
+    github: "",
+    website: "",
   };
 }
 

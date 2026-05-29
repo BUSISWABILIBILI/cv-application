@@ -61,6 +61,50 @@ export default function GeneralInfo({ generalInfo, setGeneralInfo }) {
             />
           </label>
 
+          <label>
+            Location
+            <input
+              type="text"
+              name="location"
+              placeholder="Cape Town, South Africa"
+              value={generalInfo.location}
+              onChange={handleChange}
+            />
+          </label>
+
+          <label>
+            LinkedIn
+            <input
+              type="text"
+              name="linkedin"
+              placeholder="linkedin.com/in/janesmith"
+              value={generalInfo.linkedin}
+              onChange={handleChange}
+            />
+          </label>
+
+          <label>
+            GitHub
+            <input
+              type="text"
+              name="github"
+              placeholder="github.com/janesmith"
+              value={generalInfo.github}
+              onChange={handleChange}
+            />
+          </label>
+
+          <label>
+            Portfolio
+            <input
+              type="text"
+              name="website"
+              placeholder="janesmith.dev"
+              value={generalInfo.website}
+              onChange={handleChange}
+            />
+          </label>
+
           <button type="submit">Submit</button>
         </form>
       ) : (
@@ -73,6 +117,18 @@ export default function GeneralInfo({ generalInfo, setGeneralInfo }) {
           </p>
           <p>
             <strong>Phone:</strong> {generalInfo.phone}
+          </p>
+          <p>
+            <strong>Location:</strong> {generalInfo.location}
+          </p>
+          <p>
+            <strong>LinkedIn:</strong> {generalInfo.linkedin}
+          </p>
+          <p>
+            <strong>GitHub:</strong> {generalInfo.github}
+          </p>
+          <p>
+            <strong>Portfolio:</strong> {generalInfo.website}
           </p>
 
           <button onClick={() => setIsEditing(true)}>Edit</button>

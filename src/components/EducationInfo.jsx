@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "../styles/EducationInfo.css";
 
 export default function EducationInfo({ educationInfo, setEducationInfo }) {
   const [isEditing, setIsEditing] = useState(true);
@@ -20,33 +19,47 @@ export default function EducationInfo({ educationInfo, setEducationInfo }) {
 
   return (
     <div className="education-section">
-      <h2>Educational Experience</h2>
+      <div className="section-heading">
+        <div>
+          <span>02</span>
+          <h2>Educational Experience</h2>
+        </div>
+      </div>
 
       {isEditing ? (
         <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="school"
-            placeholder="School Name"
-            value={educationInfo.school}
-            onChange={handleChange}
-          />
+          <label>
+            School name
+            <input
+              type="text"
+              name="school"
+              placeholder="University of Cape Town"
+              value={educationInfo.school}
+              onChange={handleChange}
+            />
+          </label>
 
-          <input
-            type="text"
-            name="studyTitle"
-            placeholder="Title of Study"
-            value={educationInfo.studyTitle}
-            onChange={handleChange}
-          />
+          <label>
+            Title of study
+            <input
+              type="text"
+              name="studyTitle"
+              placeholder="BSc Computer Science"
+              value={educationInfo.studyTitle}
+              onChange={handleChange}
+            />
+          </label>
 
-          <input
-            type="text"
-            name="studyDate"
-            placeholder="Date of Study"
-            value={educationInfo.studyDate}
-            onChange={handleChange}
-          />
+          <label>
+            Date of study
+            <input
+              type="text"
+              name="studyDate"
+              placeholder="2021 - 2024"
+              value={educationInfo.studyDate}
+              onChange={handleChange}
+            />
+          </label>
 
           <button type="submit">Submit</button>
         </form>

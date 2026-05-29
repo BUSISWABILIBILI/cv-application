@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "../styles/GeneralInfo.css";
 
 export default function GeneralInfo({ generalInfo, setGeneralInfo }) {
   const [isEditing, setIsEditing] = useState(true);
@@ -20,33 +19,47 @@ export default function GeneralInfo({ generalInfo, setGeneralInfo }) {
 
   return (
     <div className="general-section">
-      <h2>General Information</h2>
+      <div className="section-heading">
+        <div>
+          <span>01</span>
+          <h2>General Information</h2>
+        </div>
+      </div>
 
       {isEditing ? (
         <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="name"
-            placeholder="Full Name"
-            value={generalInfo.name}
-            onChange={handleChange}
-          />
+          <label>
+            Full name
+            <input
+              type="text"
+              name="name"
+              placeholder="Jane Smith"
+              value={generalInfo.name}
+              onChange={handleChange}
+            />
+          </label>
 
-          <input
-            type="email"
-            name="email"
-            placeholder="Email Address"
-            value={generalInfo.email}
-            onChange={handleChange}
-          />
+          <label>
+            Email address
+            <input
+              type="email"
+              name="email"
+              placeholder="jane@example.com"
+              value={generalInfo.email}
+              onChange={handleChange}
+            />
+          </label>
 
-          <input
-            type="tel"
-            name="phone"
-            placeholder="Phone Number"
-            value={generalInfo.phone}
-            onChange={handleChange}
-          />
+          <label>
+            Phone number
+            <input
+              type="tel"
+              name="phone"
+              placeholder="+27 82 123 4567"
+              value={generalInfo.phone}
+              onChange={handleChange}
+            />
+          </label>
 
           <button type="submit">Submit</button>
         </form>

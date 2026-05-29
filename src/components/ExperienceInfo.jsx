@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "../styles/ExperienceInfo.css";
 
 export default function ExperienceInfo({ experienceInfo, setExperienceInfo }) {
   const [isEditing, setIsEditing] = useState(true);
@@ -20,48 +19,70 @@ export default function ExperienceInfo({ experienceInfo, setExperienceInfo }) {
 
   return (
     <div className="experience-section">
-      <h2>Practical Experience</h2>
+      <div className="section-heading">
+        <div>
+          <span>03</span>
+          <h2>Practical Experience</h2>
+        </div>
+      </div>
 
       {isEditing ? (
         <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="company"
-            placeholder="Company Name"
-            value={experienceInfo.company}
-            onChange={handleChange}
-          />
+          <label>
+            Company name
+            <input
+              type="text"
+              name="company"
+              placeholder="Acme Studio"
+              value={experienceInfo.company}
+              onChange={handleChange}
+            />
+          </label>
 
-          <input
-            type="text"
-            name="position"
-            placeholder="Position Title"
-            value={experienceInfo.position}
-            onChange={handleChange}
-          />
+          <label>
+            Position title
+            <input
+              type="text"
+              name="position"
+              placeholder="Frontend Developer"
+              value={experienceInfo.position}
+              onChange={handleChange}
+            />
+          </label>
 
-          <textarea
-            name="responsibilities"
-            placeholder="Main Responsibilities"
-            value={experienceInfo.responsibilities}
-            onChange={handleChange}
-          />
+          <label>
+            Main responsibilities
+            <textarea
+              name="responsibilities"
+              placeholder="Describe the role, impact, and tools used"
+              value={experienceInfo.responsibilities}
+              onChange={handleChange}
+            />
+          </label>
 
-          <input
-            type="text"
-            name="startDate"
-            placeholder="Start Date"
-            value={experienceInfo.startDate}
-            onChange={handleChange}
-          />
+          <div className="date-row">
+            <label>
+              Start date
+              <input
+                type="text"
+                name="startDate"
+                placeholder="Jan 2023"
+                value={experienceInfo.startDate}
+                onChange={handleChange}
+              />
+            </label>
 
-          <input
-            type="text"
-            name="endDate"
-            placeholder="End Date"
-            value={experienceInfo.endDate}
-            onChange={handleChange}
-          />
+            <label>
+              End date
+              <input
+                type="text"
+                name="endDate"
+                placeholder="Present"
+                value={experienceInfo.endDate}
+                onChange={handleChange}
+              />
+            </label>
+          </div>
 
           <button type="submit">Submit</button>
         </form>

@@ -1,16 +1,8 @@
 import { useState } from "react";
 import "../styles/ExperienceInfo.css";
 
-export default function ExperienceInfo() {
+export default function ExperienceInfo({ experienceInfo, setExperienceInfo }) {
   const [isEditing, setIsEditing] = useState(true);
-
-  const [experienceInfo, setExperienceInfo] = useState({
-    company: "",
-    position: "",
-    responsibilities: "",
-    startDate: "",
-    endDate: "",
-  });
 
   function handleChange(e) {
     const { name, value } = e.target;

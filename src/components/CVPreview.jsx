@@ -1,19 +1,42 @@
 import "../styles/CVPreview.css";
 
-export default function CVPreview() {
+export default function CVPreview({
+  generalInfo,
+  educationInfo,
+  experienceInfo,
+}) {
   return (
     <aside className="cv-preview">
-      <div className="cv-preview-header">
-        <h2>Your CV Preview</h2>
-        <p>Your submitted information will appear in a CV-style layout.</p>
-      </div>
+      <div className="cv-document">
+        <header className="cv-document-header">
+          <h2>{generalInfo.name || "Your Name"}</h2>
+          <p>
+            {generalInfo.email || "email@example.com"} |{" "}
+            {generalInfo.phone || "Phone Number"}
+          </p>
+        </header>
 
-      <div className="cv-preview-card">
-        <h3>Preview Area</h3>
-        <p>
-          After we connect the state in the next step, your CV details will show
-          here.
-        </p>
+        <section>
+          <h3>Education</h3>
+          <p>
+            <strong>{educationInfo.school || "School Name"}</strong>
+          </p>
+          <p>{educationInfo.studyTitle || "Title of Study"}</p>
+          <p>{educationInfo.studyDate || "Date of Study"}</p>
+        </section>
+
+        <section>
+          <h3>Experience</h3>
+          <p>
+            <strong>{experienceInfo.company || "Company Name"}</strong>
+          </p>
+          <p>{experienceInfo.position || "Position Title"}</p>
+          <p>{experienceInfo.responsibilities || "Main responsibilities"}</p>
+          <p>
+            {experienceInfo.startDate || "Start Date"} -{" "}
+            {experienceInfo.endDate || "End Date"}
+          </p>
+        </section>
       </div>
     </aside>
   );

@@ -1,31 +1,53 @@
 .cv-preview {
-  background-color: #111827;
-  color: white;
-  padding: 24px;
-  border-radius: 16px;
   position: sticky;
   top: 20px;
+}
+
+.cv-document {
+  background-color: white;
+  color: #111827;
+  padding: 28px;
+  border-radius: 16px;
+  min-height: 500px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.14);
 }
 
-.cv-preview-header h2 {
-  margin-top: 0;
-  font-size: 1.5rem;
+.cv-document-header {
+  text-align: center;
+  border-bottom: 2px solid #111827;
+  padding-bottom: 16px;
+  margin-bottom: 24px;
 }
 
-.cv-preview-header p {
-  color: #d1d5db;
-  line-height: 1.6;
-}
-
-.cv-preview-card {
-  margin-top: 20px;
-  background-color: white;
+.cv-document-header h2 {
+  margin: 0;
+  font-size: 2rem;
   color: #111827;
-  padding: 20px;
-  border-radius: 12px;
 }
 
-.cv-preview-card h3 {
-  margin-top: 0;
+.cv-document-header p {
+  margin-top: 8px;
+  color: #4b5563;
+}
+
+.cv-document section {
+  margin-bottom: 24px;
+}
+
+.cv-document h3 {
+  color: #111827;
+  border-bottom: 1px solid #d1d5db;
+  padding-bottom: 6px;
+  margin-bottom: 12px;
+}
+
+.cv-document p {
+  margin: 6px 0;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .cv-preview {
+    position: static;
+  }
 }

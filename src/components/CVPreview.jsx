@@ -5,11 +5,20 @@ export default function CVPreview({
   educationInfo,
   experienceInfo,
 }) {
+  function handlePrint() {
+    window.print();
+  }
+
   return (
     <aside className="cv-preview">
       <div className="preview-heading">
-        <p>Live Preview</p>
-        <span>A4 document view</span>
+        <div>
+          <p>Live Preview</p>
+          <span>A4 document view</span>
+        </div>
+        <button type="button" onClick={handlePrint}>
+          Print CV
+        </button>
       </div>
 
       <div className="cv-document">

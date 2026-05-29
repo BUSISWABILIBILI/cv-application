@@ -6,6 +6,31 @@
   gap: 12px;
 }
 
+.preview-heading > div {
+  display: grid;
+  gap: 2px;
+}
+
+.preview-heading button {
+  min-height: 38px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 6px;
+  background-color: #111827;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 0.88rem;
+  font-weight: 800;
+  transition:
+    background-color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.preview-heading button:hover {
+  background-color: #0f766e;
+  transform: translateY(-1px);
+}
+
 .cv-document {
   width: min(760px, 100%);
   min-height: 900px;
@@ -113,6 +138,10 @@
 }
 
 @media (max-width: 560px) {
+  .preview-heading button {
+    justify-self: start;
+  }
+
   .cv-document {
     min-height: 0;
     padding: 28px 22px;
@@ -135,5 +164,60 @@
   .cv-date {
     max-width: none;
     text-align: left;
+  }
+}
+
+@page {
+  size: A4;
+  margin: 14mm;
+}
+
+@media print {
+  body {
+    background: #ffffff;
+  }
+
+  .app-container {
+    width: 100%;
+    padding: 0;
+  }
+
+  .app-header,
+  .form-column,
+  .preview-heading {
+    display: none;
+  }
+
+  .cv-layout {
+    display: block;
+  }
+
+  .cv-preview {
+    position: static;
+    display: block;
+  }
+
+  .cv-document {
+    width: 100%;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .cv-document-header h2 {
+    font-size: 30pt;
+  }
+
+  .cv-document section {
+    break-inside: avoid;
+    margin-bottom: 22px;
+  }
+
+  .cv-entry,
+  .cv-preview-entry {
+    break-inside: avoid;
   }
 }

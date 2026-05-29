@@ -127,6 +127,41 @@
   line-height: 1.5;
 }
 
+.cv-project {
+  display: grid;
+  gap: 10px;
+}
+
+.cv-project + .cv-project {
+  padding-top: 16px;
+  margin-top: 16px;
+  border-top: 1px solid #e5ebf1;
+}
+
+.cv-project-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) max-content;
+  gap: 20px;
+  align-items: start;
+}
+
+.cv-project-header a,
+.cv-project-header span {
+  color: #0f766e;
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-align: right;
+  text-decoration: none;
+}
+
+.cv-project-header a:hover {
+  text-decoration: underline;
+}
+
+.cv-project-tech {
+  margin-top: 0;
+}
+
 .cv-document strong {
   color: #111827;
 }
@@ -191,6 +226,16 @@
     gap: 4px;
   }
 
+  .cv-project-header {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .cv-project-header a,
+  .cv-project-header span {
+    text-align: left;
+  }
+
   .cv-date {
     max-width: none;
     text-align: left;
@@ -247,6 +292,7 @@
   }
 
   .cv-entry,
+  .cv-project,
   .cv-preview-entry {
     break-inside: avoid;
   }

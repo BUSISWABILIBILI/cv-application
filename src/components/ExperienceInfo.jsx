@@ -71,7 +71,7 @@ export default function ExperienceInfo({
     <div className="experience-section">
       <div className="section-heading">
         <div>
-          <span>05</span>
+          <span>06</span>
           <h2>Practical Experience</h2>
         </div>
         <button

@@ -68,7 +68,7 @@ export default function EducationInfo({
     <div className="education-section">
       <div className="section-heading">
         <div>
-          <span>04</span>
+          <span>05</span>
           <h2>Educational Experience</h2>
         </div>
         <button

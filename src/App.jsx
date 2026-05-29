@@ -3,6 +3,7 @@ import "./App.css";
 import GeneralInfo from "./components/GeneralInfo";
 import SummaryInfo from "./components/SummaryInfo";
 import SkillsInfo from "./components/SkillsInfo";
+import ProjectsInfo from "./components/ProjectsInfo";
 import EducationInfo from "./components/EducationInfo";
 import ExperienceInfo from "./components/ExperienceInfo";
 import CVPreview from "./components/CVPreview";
@@ -57,6 +58,16 @@ function createExperienceEntry() {
   };
 }
 
+function createProjectEntry() {
+  return {
+    id: createId("project"),
+    name: "",
+    technologies: "",
+    link: "",
+    description: "",
+  };
+}
+
 function normalizeEducationInfo(educationInfo) {
   if (!Array.isArray(educationInfo) || educationInfo.length === 0) {
     return [createEducationEntry()];
@@ -66,6 +77,18 @@ function normalizeEducationInfo(educationInfo) {
     ...createEducationEntry(),
     ...education,
     id: education.id || createId("education"),
+  }));
+}
+
+function normalizeProjectInfo(projectInfo) {
+  if (!Array.isArray(projectInfo) || projectInfo.length === 0) {
+    return [createProjectEntry()];
+  }
+
+  return projectInfo.map((project) => ({
+    ...createProjectEntry(),
+    ...project,
+    id: project.id || createId("project"),
   }));
 }
 
@@ -86,6 +109,7 @@ function createInitialCVData() {
     generalInfo: createGeneralInfo(),
     summaryInfo: createSummaryInfo(),
     skillsInfo: createSkillsInfo(),
+    projectInfo: [createProjectEntry()],
     educationInfo: [createEducationEntry()],
     experienceInfo: [createExperienceEntry()],
   };
@@ -118,6 +142,7 @@ function loadSavedCVData() {
         ...createSkillsInfo(),
         ...parsedData.skillsInfo,
       },
+      projectInfo: normalizeProjectInfo(parsedData.projectInfo),
       educationInfo: normalizeEducationInfo(parsedData.educationInfo),
       experienceInfo: normalizeExperienceInfo(parsedData.experienceInfo),
     };
@@ -134,6 +159,8 @@ function App() {
   const [summaryInfo, setSummaryInfo] = useState(initialCVData.summaryInfo);
 
   const [skillsInfo, setSkillsInfo] = useState(initialCVData.skillsInfo);
+
+  const [projectInfo, setProjectInfo] = useState(initialCVData.projectInfo);
 
   const [educationInfo, setEducationInfo] = useState(
     initialCVData.educationInfo,
@@ -152,6 +179,7 @@ function App() {
       generalInfo,
       summaryInfo,
       skillsInfo,
+      projectInfo,
       educationInfo,
       experienceInfo,
     };
@@ -161,7 +189,14 @@ function App() {
     } catch {
       // Ignore storage failures so the editor still works in restricted browsers.
     }
-  }, [generalInfo, summaryInfo, skillsInfo, educationInfo, experienceInfo]);
+  }, [
+    generalInfo,
+    summaryInfo,
+    skillsInfo,
+    projectInfo,
+    educationInfo,
+    experienceInfo,
+  ]);
 
   function handleClearSavedData() {
     const emptyCVData = createInitialCVData();
@@ -169,6 +204,7 @@ function App() {
     setGeneralInfo(emptyCVData.generalInfo);
     setSummaryInfo(emptyCVData.summaryInfo);
     setSkillsInfo(emptyCVData.skillsInfo);
+    setProjectInfo(emptyCVData.projectInfo);
     setEducationInfo(emptyCVData.educationInfo);
     setExperienceInfo(emptyCVData.experienceInfo);
     setResetVersion((currentVersion) => currentVersion + 1);
@@ -226,6 +262,13 @@ function App() {
             setSkillsInfo={setSkillsInfo}
           />
 
+          <ProjectsInfo
+            key={`projects-${resetVersion}`}
+            projectInfo={projectInfo}
+            setProjectInfo={setProjectInfo}
+            createProjectEntry={createProjectEntry}
+          />
+
           <EducationInfo
             key={`education-${resetVersion}`}
             educationInfo={educationInfo}
@@ -245,6 +288,7 @@ function App() {
           generalInfo={generalInfo}
           summaryInfo={summaryInfo}
           skillsInfo={skillsInfo}
+          projectInfo={projectInfo}
           educationInfo={educationInfo}
           experienceInfo={experienceInfo}
         />

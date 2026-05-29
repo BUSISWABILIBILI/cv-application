@@ -4,22 +4,39 @@ function getResponsibilityItems(responsibilities) {
   return responsibilities
     .split(/\n/)
     .map((responsibility) =>
-      responsibility.replace(/^[-*•]\s*/, "").trim(),
+      responsibility.replace(/^[-*\u2022]\s*/, "").trim(),
     )
     .filter(Boolean);
+}
+
+function getListItems(value) {
+  return value
+    .split(/[\n,]/)
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
+
+function getProjectHref(link) {
+  if (!link) {
+    return "";
+  }
+
+  if (/^https?:\/\//i.test(link)) {
+    return link;
+  }
+
+  return `https://${link}`;
 }
 
 export default function CVPreview({
   generalInfo,
   summaryInfo,
   skillsInfo,
+  projectInfo,
   educationInfo,
   experienceInfo,
 }) {
-  const skillItems = skillsInfo.skills
-    .split(/[\n,]/)
-    .map((skill) => skill.trim())
-    .filter(Boolean);
+  const skillItems = getListItems(skillsInfo.skills);
 
   function handlePrint() {
     window.print();
@@ -67,12 +84,55 @@ export default function CVPreview({
         </section>
 
         <section>
+          <h3>Projects</h3>
+          {projectInfo.map((project, index) => {
+            const technologyItems = getListItems(project.technologies);
+            const projectLink = getProjectHref(project.link);
+
+            return (
+              <div className="cv-project" key={project.id}>
+                <div className="cv-project-header">
+                  <div>
+                    <p>
+                      <strong>
+                        {project.name || `Project Name ${index + 1}`}
+                      </strong>
+                    </p>
+                    <p>{project.description || "Project description"}</p>
+                  </div>
+                  {projectLink ? (
+                    <a href={projectLink} target="_blank" rel="noreferrer">
+                      View project
+                    </a>
+                  ) : (
+                    <span>Project link</span>
+                  )}
+                </div>
+
+                <ul className="cv-skills cv-project-tech">
+                  {(technologyItems.length > 0
+                    ? technologyItems
+                    : ["Technology", "Tool", "Method"]
+                  ).map((technology, technologyIndex) => (
+                    <li key={`${technology}-${technologyIndex}`}>
+                      {technology}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
+        </section>
+
+        <section>
           <h3>Education</h3>
           {educationInfo.map((education, index) => (
             <div className="cv-entry" key={education.id}>
               <div>
                 <p>
-                  <strong>{education.school || `School Name ${index + 1}`}</strong>
+                  <strong>
+                    {education.school || `School Name ${index + 1}`}
+                  </strong>
                 </p>
                 <p>{education.studyTitle || "Title of Study"}</p>
               </div>

@@ -1,14 +1,8 @@
 import { useState } from "react";
 import "../styles/EducationInfo.css";
 
-export default function EducationInfo() {
+export default function EducationInfo({ educationInfo, setEducationInfo }) {
   const [isEditing, setIsEditing] = useState(true);
-
-  const [educationInfo, setEducationInfo] = useState({
-    school: "",
-    studyTitle: "",
-    studyDate: "",
-  });
 
   function handleChange(e) {
     const { name, value } = e.target;

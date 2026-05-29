@@ -85,6 +85,8 @@ body {
 }
 
 .general-section,
+.summary-section,
+.skills-section,
 .education-section,
 .experience-section {
   margin: 0;
@@ -160,9 +162,13 @@ body {
 }
 
 .general-section form,
+.summary-section form,
+.skills-section form,
 .education-section form,
 .experience-section form,
 .general-preview,
+.summary-preview,
+.skills-preview,
 .education-preview,
 .experience-preview {
   display: grid;
@@ -170,6 +176,8 @@ body {
 }
 
 .general-section label,
+.summary-section label,
+.skills-section label,
 .education-section label,
 .experience-section label {
   display: grid;
@@ -180,6 +188,8 @@ body {
 }
 
 .general-section input,
+.summary-section textarea,
+.skills-section textarea,
 .education-section input,
 .experience-section input,
 .experience-section textarea {
@@ -198,6 +208,8 @@ body {
 }
 
 .general-section input:focus,
+.summary-section textarea:focus,
+.skills-section textarea:focus,
 .education-section input:focus,
 .experience-section input:focus,
 .experience-section textarea:focus {
@@ -207,6 +219,8 @@ body {
   box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.14);
 }
 
+.summary-section textarea,
+.skills-section textarea,
 .experience-section textarea {
   min-height: 116px;
   resize: vertical;
@@ -219,6 +233,8 @@ body {
 }
 
 .general-section button,
+.summary-section button,
+.skills-section button,
 .education-section button,
 .experience-section button {
   justify-self: start;
@@ -237,6 +253,8 @@ body {
 }
 
 .general-section button:hover,
+.summary-section button:hover,
+.skills-section button:hover,
 .education-section button:hover,
 .experience-section button:hover {
   background-color: #0f766e;
@@ -246,6 +264,8 @@ body {
 .section-heading .add-entry-button,
 .entry-group-header .danger-button,
 .general-section .secondary-button,
+.summary-section .secondary-button,
+.skills-section .secondary-button,
 .education-section .secondary-button,
 .experience-section .secondary-button {
   min-height: 34px;
@@ -255,6 +275,8 @@ body {
 
 .section-heading .add-entry-button,
 .general-section .secondary-button,
+.summary-section .secondary-button,
+.skills-section .secondary-button,
 .education-section .secondary-button,
 .experience-section .secondary-button {
   background-color: #e8f3f1;
@@ -263,6 +285,8 @@ body {
 
 .section-heading .add-entry-button:hover,
 .general-section .secondary-button:hover,
+.summary-section .secondary-button:hover,
+.skills-section .secondary-button:hover,
 .education-section .secondary-button:hover,
 .experience-section .secondary-button:hover {
   background-color: #0f766e;
@@ -280,6 +304,8 @@ body {
 }
 
 .general-preview p,
+.summary-preview p,
+.skills-preview p,
 .education-preview p,
 .experience-preview p {
   margin: 0;
@@ -318,6 +344,8 @@ body {
   }
 
   .general-section,
+  .summary-section,
+  .skills-section,
   .education-section,
   .experience-section {
     padding: 18px;
@@ -328,6 +356,8 @@ body {
   }
 
   .general-section button,
+  .summary-section button,
+  .skills-section button,
   .education-section button,
   .experience-section button {
     justify-self: stretch;

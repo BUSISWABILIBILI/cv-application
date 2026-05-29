@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./App.css";
 import GeneralInfo from "./components/GeneralInfo";
+import SummaryInfo from "./components/SummaryInfo";
+import SkillsInfo from "./components/SkillsInfo";
 import EducationInfo from "./components/EducationInfo";
 import ExperienceInfo from "./components/ExperienceInfo";
 import CVPreview from "./components/CVPreview";
@@ -40,6 +42,14 @@ function App() {
     phone: "",
   });
 
+  const [summaryInfo, setSummaryInfo] = useState({
+    summary: "",
+  });
+
+  const [skillsInfo, setSkillsInfo] = useState({
+    skills: "",
+  });
+
   const [educationInfo, setEducationInfo] = useState(() => [
     createEducationEntry(),
   ]);
@@ -72,6 +82,13 @@ function App() {
             setGeneralInfo={setGeneralInfo}
           />
 
+          <SummaryInfo
+            summaryInfo={summaryInfo}
+            setSummaryInfo={setSummaryInfo}
+          />
+
+          <SkillsInfo skillsInfo={skillsInfo} setSkillsInfo={setSkillsInfo} />
+
           <EducationInfo
             educationInfo={educationInfo}
             setEducationInfo={setEducationInfo}
@@ -87,6 +104,8 @@ function App() {
 
         <CVPreview
           generalInfo={generalInfo}
+          summaryInfo={summaryInfo}
+          skillsInfo={skillsInfo}
           educationInfo={educationInfo}
           experienceInfo={experienceInfo}
         />

@@ -2,9 +2,16 @@ import "../styles/CVPreview.css";
 
 export default function CVPreview({
   generalInfo,
+  summaryInfo,
+  skillsInfo,
   educationInfo,
   experienceInfo,
 }) {
+  const skillItems = skillsInfo.skills
+    .split(/[\n,]/)
+    .map((skill) => skill.trim())
+    .filter(Boolean);
+
   function handlePrint() {
     window.print();
   }
@@ -29,6 +36,26 @@ export default function CVPreview({
             <span>{generalInfo.phone || "Phone Number"}</span>
           </p>
         </header>
+
+        <section>
+          <h3>Professional Summary</h3>
+          <p>
+            {summaryInfo.summary ||
+              "A concise summary of your experience, strengths, and career focus."}
+          </p>
+        </section>
+
+        <section>
+          <h3>Skills</h3>
+          <ul className="cv-skills">
+            {(skillItems.length > 0
+              ? skillItems
+              : ["Core skill", "Technical skill", "Professional skill"]
+            ).map((skill, index) => (
+              <li key={`${skill}-${index}`}>{skill}</li>
+            ))}
+          </ul>
+        </section>
 
         <section>
           <h3>Education</h3>

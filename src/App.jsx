@@ -5,6 +5,34 @@ import EducationInfo from "./components/EducationInfo";
 import ExperienceInfo from "./components/ExperienceInfo";
 import CVPreview from "./components/CVPreview";
 
+function createId(prefix) {
+  const randomId =
+    globalThis.crypto?.randomUUID?.() ??
+    `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
+
+  return `${prefix}-${randomId}`;
+}
+
+function createEducationEntry() {
+  return {
+    id: createId("education"),
+    school: "",
+    studyTitle: "",
+    studyDate: "",
+  };
+}
+
+function createExperienceEntry() {
+  return {
+    id: createId("experience"),
+    company: "",
+    position: "",
+    responsibilities: "",
+    startDate: "",
+    endDate: "",
+  };
+}
+
 function App() {
   const [generalInfo, setGeneralInfo] = useState({
     name: "",
@@ -12,19 +40,13 @@ function App() {
     phone: "",
   });
 
-  const [educationInfo, setEducationInfo] = useState({
-    school: "",
-    studyTitle: "",
-    studyDate: "",
-  });
+  const [educationInfo, setEducationInfo] = useState(() => [
+    createEducationEntry(),
+  ]);
 
-  const [experienceInfo, setExperienceInfo] = useState({
-    company: "",
-    position: "",
-    responsibilities: "",
-    startDate: "",
-    endDate: "",
-  });
+  const [experienceInfo, setExperienceInfo] = useState(() => [
+    createExperienceEntry(),
+  ]);
 
   return (
     <main className="app-container">
@@ -53,11 +75,13 @@ function App() {
           <EducationInfo
             educationInfo={educationInfo}
             setEducationInfo={setEducationInfo}
+            createEducationEntry={createEducationEntry}
           />
 
           <ExperienceInfo
             experienceInfo={experienceInfo}
             setExperienceInfo={setExperienceInfo}
+            createExperienceEntry={createExperienceEntry}
           />
         </section>
 

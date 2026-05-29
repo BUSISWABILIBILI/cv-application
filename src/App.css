@@ -102,7 +102,7 @@ body {
   margin-bottom: 20px;
 }
 
-.section-heading div {
+.section-heading > div {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -124,6 +124,39 @@ body {
   color: #111827;
   font-size: 1.1rem;
   line-height: 1.2;
+}
+
+.entry-list {
+  display: grid;
+  gap: 20px;
+}
+
+.entry-group {
+  display: grid;
+  gap: 14px;
+  padding-top: 20px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.entry-group:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.entry-group-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.entry-group-header p {
+  margin: 0;
+  color: #66758a;
+  font-size: 0.8rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .general-section form,
@@ -208,6 +241,42 @@ body {
 .experience-section button:hover {
   background-color: #0f766e;
   transform: translateY(-1px);
+}
+
+.section-heading .add-entry-button,
+.entry-group-header .danger-button,
+.general-section .secondary-button,
+.education-section .secondary-button,
+.experience-section .secondary-button {
+  min-height: 34px;
+  padding: 0 12px;
+  font-size: 0.84rem;
+}
+
+.section-heading .add-entry-button,
+.general-section .secondary-button,
+.education-section .secondary-button,
+.experience-section .secondary-button {
+  background-color: #e8f3f1;
+  color: #0f766e;
+}
+
+.section-heading .add-entry-button:hover,
+.general-section .secondary-button:hover,
+.education-section .secondary-button:hover,
+.experience-section .secondary-button:hover {
+  background-color: #0f766e;
+  color: #ffffff;
+}
+
+.entry-group-header .danger-button {
+  background-color: #fff1f2;
+  color: #be123c;
+}
+
+.entry-group-header .danger-button:hover {
+  background-color: #be123c;
+  color: #ffffff;
 }
 
 .general-preview p,

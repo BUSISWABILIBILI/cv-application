@@ -84,6 +84,17 @@
   margin-bottom: 10px;
 }
 
+.cv-entry + .cv-entry,
+.cv-preview-entry + .cv-preview-entry {
+  padding-top: 16px;
+  margin-top: 16px;
+  border-top: 1px solid #e5ebf1;
+}
+
+.cv-preview-entry .cv-entry {
+  margin-bottom: 8px;
+}
+
 .cv-date {
   max-width: 190px;
   color: #66758a;

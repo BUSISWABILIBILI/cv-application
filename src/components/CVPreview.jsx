@@ -23,32 +23,42 @@ export default function CVPreview({
 
         <section>
           <h3>Education</h3>
-          <div className="cv-entry">
-            <div>
-              <p>
-                <strong>{educationInfo.school || "School Name"}</strong>
+          {educationInfo.map((education, index) => (
+            <div className="cv-entry" key={education.id}>
+              <div>
+                <p>
+                  <strong>{education.school || `School Name ${index + 1}`}</strong>
+                </p>
+                <p>{education.studyTitle || "Title of Study"}</p>
+              </div>
+              <p className="cv-date">
+                {education.studyDate || "Date of Study"}
               </p>
-              <p>{educationInfo.studyTitle || "Title of Study"}</p>
             </div>
-            <p className="cv-date">{educationInfo.studyDate || "Date of Study"}</p>
-          </div>
+          ))}
         </section>
 
         <section>
           <h3>Experience</h3>
-          <div className="cv-entry">
-            <div>
-              <p>
-                <strong>{experienceInfo.company || "Company Name"}</strong>
-              </p>
-              <p>{experienceInfo.position || "Position Title"}</p>
+          {experienceInfo.map((experience, index) => (
+            <div className="cv-preview-entry" key={experience.id}>
+              <div className="cv-entry">
+                <div>
+                  <p>
+                    <strong>
+                      {experience.company || `Company Name ${index + 1}`}
+                    </strong>
+                  </p>
+                  <p>{experience.position || "Position Title"}</p>
+                </div>
+                <p className="cv-date">
+                  {experience.startDate || "Start Date"} -{" "}
+                  {experience.endDate || "End Date"}
+                </p>
+              </div>
+              <p>{experience.responsibilities || "Main responsibilities"}</p>
             </div>
-            <p className="cv-date">
-              {experienceInfo.startDate || "Start Date"} -{" "}
-              {experienceInfo.endDate || "End Date"}
-            </p>
-          </div>
-          <p>{experienceInfo.responsibilities || "Main responsibilities"}</p>
+          ))}
         </section>
       </div>
     </aside>

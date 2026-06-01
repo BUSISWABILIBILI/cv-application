@@ -41,24 +41,29 @@ export default function CVPreview({
   experienceInfo,
 }) {
   const skillItems = getListItems(skillsInfo.skills);
+  const iconSprite = `${import.meta.env.BASE_URL}icons.svg`;
   const contactItems = [
     {
+      icon: "mail-icon",
       label: generalInfo.email || "email@example.com",
       href: generalInfo.email ? `mailto:${generalInfo.email}` : "",
     },
     {
+      icon: "phone-icon",
       label: generalInfo.phone || "Phone Number",
       href: generalInfo.phone
         ? `tel:${generalInfo.phone.replace(/[^\d+]/g, "")}`
         : "",
     },
     {
+      icon: "location-icon",
       label: generalInfo.location || "Location",
       href: "",
     },
     ...(generalInfo.linkedin
       ? [
           {
+            icon: "linkedin-icon",
             label: getDisplayLink(generalInfo.linkedin),
             href: getProjectHref(generalInfo.linkedin),
           },
@@ -67,6 +72,7 @@ export default function CVPreview({
     ...(generalInfo.github
       ? [
           {
+            icon: "github-icon",
             label: getDisplayLink(generalInfo.github),
             href: getProjectHref(generalInfo.github),
           },
@@ -75,6 +81,7 @@ export default function CVPreview({
     ...(generalInfo.website
       ? [
           {
+            icon: "website-icon",
             label: getDisplayLink(generalInfo.website),
             href: getProjectHref(generalInfo.website),
           },
@@ -106,10 +113,18 @@ export default function CVPreview({
               <li key={`${item.label}-${item.href}`}>
                 {item.href ? (
                   <a href={item.href} target="_blank" rel="noreferrer">
+                    <svg aria-hidden="true" className="cv-contact-icon">
+                      <use href={`${iconSprite}#${item.icon}`} />
+                    </svg>
                     {item.label}
                   </a>
                 ) : (
-                  <span>{item.label}</span>
+                  <span>
+                    <svg aria-hidden="true" className="cv-contact-icon">
+                      <use href={`${iconSprite}#${item.icon}`} />
+                    </svg>
+                    {item.label}
+                  </span>
                 )}
               </li>
             ))}

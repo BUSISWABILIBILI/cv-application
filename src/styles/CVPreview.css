@@ -47,6 +47,7 @@
   padding-bottom: 22px;
   margin-bottom: 30px;
   border-bottom: 2px solid #111827;
+  text-align: center;
 }
 
 .cv-document-header h2 {
@@ -60,6 +61,7 @@
 .cv-contact-list {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 8px 18px;
   padding: 0;
   margin: 12px 0 0;
@@ -69,19 +71,20 @@
   line-height: 1.5;
 }
 
-.cv-contact-list li + li::before {
-  content: "";
-  display: inline-block;
-  width: 5px;
-  height: 5px;
-  margin: 0 18px 2px 0;
-  background-color: #0f766e;
-}
-
 .cv-contact-list a,
 .cv-contact-list span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   color: inherit;
   text-decoration: none;
+}
+
+.cv-contact-icon {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  color: #0f766e;
 }
 
 .cv-contact-list a:hover {
@@ -226,11 +229,8 @@
 
   .cv-contact-list {
     display: grid;
+    justify-items: center;
     gap: 4px;
-  }
-
-  .cv-contact-list li + li::before {
-    display: none;
   }
 
   .cv-entry {

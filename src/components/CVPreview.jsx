@@ -89,7 +89,7 @@ export default function CVPreview({
       : []),
   ];
 
-  function handlePrint() {
+  function handleDownload() {
     window.print();
   }
 
@@ -100,8 +100,8 @@ export default function CVPreview({
           <p>Live Preview</p>
           <span>A4 document view</span>
         </div>
-        <button type="button" onClick={handlePrint}>
-          Print CV
+        <button type="button" onClick={handleDownload}>
+          Download CV
         </button>
       </div>
 

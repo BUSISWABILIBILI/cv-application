@@ -1,3 +1,4 @@
+import { useRef, useState } from "react";
 import "../styles/CVPreview.css";
 
 function getResponsibilityItems(responsibilities) {
@@ -32,6 +33,16 @@ function getDisplayLink(link) {
   return link.replace(/^https?:\/\//i, "").replace(/\/$/, "");
 }
 
+function getPdfFilename(name) {
+  const normalizedName = name
+    .trim()
+    .replace(/[^a-z0-9]+/gi, "-")
+    .replace(/^-+|-+$/g, "")
+    .toLowerCase();
+
+  return normalizedName ? `${normalizedName}-cv.pdf` : "cv.pdf";
+}
+
 export default function CVPreview({
   generalInfo,
   summaryInfo,
@@ -40,6 +51,8 @@ export default function CVPreview({
   educationInfo,
   experienceInfo,
 }) {
+  const cvDocumentRef = useRef(null);
+  const [isDownloading, setIsDownloading] = useState(false);
   const skillItems = getListItems(skillsInfo.skills);
   const iconSprite = `${import.meta.env.BASE_URL}icons.svg`;
   const contactItems = [
@@ -89,8 +102,57 @@ export default function CVPreview({
       : []),
   ];
 
-  function handleDownload() {
-    window.print();
+  async function handleDownload() {
+    if (!cvDocumentRef.current || isDownloading) {
+      return;
+    }
+
+    setIsDownloading(true);
+
+    try {
+      const [{ default: html2canvas }, { jsPDF }] = await Promise.all([
+        import("html2canvas"),
+        import("jspdf"),
+      ]);
+      const canvas = await html2canvas(cvDocumentRef.current, {
+        backgroundColor: "#ffffff",
+        logging: false,
+        scale: 2,
+        useCORS: true,
+      });
+      const pdf = new jsPDF({
+        format: "a4",
+        orientation: "portrait",
+        unit: "mm",
+      });
+      const pageWidth = pdf.internal.pageSize.getWidth();
+      const pageHeight = pdf.internal.pageSize.getHeight();
+      const imageHeight = (canvas.height * pageWidth) / canvas.width;
+      const imageData = canvas.toDataURL("image/png");
+      let remainingHeight = imageHeight;
+      let imagePosition = 0;
+
+      pdf.addImage(imageData, "PNG", 0, imagePosition, pageWidth, imageHeight);
+      remainingHeight -= pageHeight;
+
+      while (remainingHeight > 0) {
+        imagePosition = remainingHeight - imageHeight;
+        pdf.addPage();
+        pdf.addImage(
+          imageData,
+          "PNG",
+          0,
+          imagePosition,
+          pageWidth,
+          imageHeight,
+        );
+        remainingHeight -= pageHeight;
+      }
+
+      pdf.save(getPdfFilename(generalInfo.name));
+    } finally {
+      setIsDownloading(false);
+    }
   }
 
   return (
@@ -100,12 +162,12 @@ export default function CVPreview({
           <p>Live Preview</p>
           <span>A4 document view</span>
         </div>
-        <button type="button" onClick={handleDownload}>
-          Download CV
+        <button type="button" disabled={isDownloading} onClick={handleDownload}>
+          {isDownloading ? "Preparing PDF..." : "Download CV"}
         </button>
       </div>
 
-      <div className="cv-document">
+      <div className="cv-document" ref={cvDocumentRef}>
         <header className="cv-document-header">
           <h2>{generalInfo.name || "Your Name"}</h2>
           <ul className="cv-contact-list">

@@ -26,9 +26,14 @@
     transform 0.18s ease;
 }
 
-.preview-heading button:hover {
+.preview-heading button:not(:disabled):hover {
   background-color: #0f766e;
   transform: translateY(-1px);
+}
+
+.preview-heading button:disabled {
+  cursor: wait;
+  opacity: 0.72;
 }
 
 .cv-document {
